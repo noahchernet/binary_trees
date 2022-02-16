@@ -12,22 +12,21 @@ int binary_tree_balance(const binary_tree_t *tree)
 
 	if (!tree)
 		return (0);
+	balance_factor = (int) (binary_tree_height(tree->left) - binary_tree_height
+		(tree->right));
 
 	/**
 	 * If tree->right is a leaf, balance_factor becomes height of the left
 	 * tree minus 1
 	 */
 	if (tree->right && !tree->right->left && !tree->right->right)
-		balance_factor = (int) binary_tree_height(tree->left) - 1;
+		balance_factor -= 1;
 	/**
 	 * If tree->left is a leaf, balance_factor becomes 1 minus height of the
 	 * right tree
 	 */
 	else if (tree->left && !tree->left->left && !tree->left->right)
-		balance_factor = 1 - (int) binary_tree_height(tree->right);
-	else
-		balance_factor = (int) (binary_tree_height(tree->left) - binary_tree_height
-			(tree->right));
+		balance_factor += 1;
 
 	return (balance_factor);
 }
