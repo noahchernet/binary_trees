@@ -1,5 +1,4 @@
 #include "binary_trees.h"
-#include "math.h"
 
 /**
  * binary_tree_is_perfect - checks if a binary tree is symmetrical
@@ -19,7 +18,7 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	h = binary_tree_height(tree);
 
 	if (l == (n + 1) / 2 ||
-		n == 2 * h - 1 || n == (size_t) pow(2, (double) h + 1) - 1)
+		n == 2 * h - 1 || n == power(2, h + 1) - 1)
 		return (1);
 	return (0);
 }
@@ -103,4 +102,18 @@ size_t binary_tree_height(const binary_tree_t *tree)
 	if (right_height > left_height)
 		return (right_height);
 	return (left_height);
+}
+
+/**
+ * power - Calculates a ^ b
+ * @a: a number
+ * @b: a number
+ *
+ * Return: a ^ b
+ */
+size_t power(size_t a, size_t b)
+{
+	while (b--)
+		a *= a;
+	return (a);
 }
